@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form_inherit_customer_social_media" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.customer.social.media</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='image_1920']"
+                       position="before"
+                       context="{'res_partner_search_mode': 'customer'}">
+                     <group attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
+                         <img src='/ectest/static/src/img/icon3.png'
+                              style="margin-top: 20px; max-width: 30px" width="100%"/>
+                         <newline/>
+                         <div>The Social Media Profile for this Customer is Completed</div>
+                     </group>
+                </xpath>
+                <xpath expr="//page[@name='internal_notes']"
+                       position="after" name="profile" string="Profile"
+                       context="{'res_partner_search_mode': 'customer'}">
+                    <page string="Social Media Profile">
+                        <sheet>
+                            <group>
+                                <field name="facebook" widget="url"/>
+                                <field name="linkedin" widget="url"/>
+                                <field name="twitter" widget="url"/>
+                                <field name="has_social_media" widget="boolean_toggle"/>
+                            </group>
+                       </sheet>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_partner_tree_inherit_customer_social_media" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit.customer.social.media</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="has_social_media" widget="boolean_toggle"
+                           context="{'res_partner_search_mode': 'customer'}"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_partner_kanban_inherit_customer_social_media">
+            <field name="name">res.partner.kanban.inherit.customer.social.media</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <field name="mobile" position="after">
+                    <field name="has_social_media" context="{'res_partner_search_mode': 'customer'}"/>
+                </field>
+                <xpath expr="//span[hasclass('oe_kanban_partner_links')]"
+                       position="inside">
+                    <span t-if="record.has_social_media.value>0" class="badge badge-pill">
+                        <i class="fa fa-check text-success mr8"/>
+                        <t t-esc="record.has_social_media.value"/>
+                    </span >
+                </xpath>
+            </field>
+        </record>
+
+       <record id="view_partner_search_inherit_customer_social_media" model="ir.ui.view">
+           <field name="name">res.partner.search.inherit.customer.social.media</field>
+           <field name="model">res.partner</field>
+           <field name="inherit_id" ref="base.view_res_partner_filter"/>
+           <field name="arch" type="xml">
+                <xpath expr="//filter[@name='type_person']" position="after">
+                    <filter string="Incomplete Social Media Profile"
+                            name="has_social_media"
+                            domain="['|','|',('facebook','=',False), ('linkedin','=',False), ('twitter','=',False)]"
+                            context="{'res_partner_search_mode': 'customer'}"/>
+                </xpath>
+           </field>
+        </record>
+
+    </data>
+</odoo>
