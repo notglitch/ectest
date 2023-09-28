@@ -9,12 +9,11 @@
                 <xpath expr="//field[@name='image_1920']"
                        position="before"
                        context="{'res_partner_search_mode': 'customer'}">
-                     <group attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
-                         <img src='/ectest/static/src/img/icon3.png'
-                              style="margin-top: 20px; max-width: 30px" width="100%"/>
-                         <newline/>
-                         <div>The Social Media Profile for this Customer is Completed</div>
-                     </group>
+                        <group>
+                            <div attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
+                                The Social Media Profile for this Customer is Completed  <field name="image" widget="image" width="9%" class="oe_inline" placeholder="Author Name"/>
+                            </div>
+                        </group>
                 </xpath>
                 <xpath expr="//page[@name='internal_notes']"
                        position="after" name="profile" string="Profile"
@@ -25,7 +24,11 @@
                                 <field name="facebook" widget="url"/>
                                 <field name="linkedin" widget="url"/>
                                 <field name="twitter" widget="url"/>
-                                <field name="has_social_media" widget="boolean_toggle"/>
+                            </group>
+                            <group>
+                                <div attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
+                                    Social Media Profile  <field name="image" widget="image" width="7%" class="oe_inline" placeholder="Author Name"/>
+                                </div>
                             </group>
                        </sheet>
                     </page>
@@ -37,10 +40,13 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_tree"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='display_name']" position="after">
-                    <field name="has_social_media" widget="boolean_toggle"
-                           context="{'res_partner_search_mode': 'customer'}"/>
-                </xpath>
+                <xpath expr="//field[@name='display_name']" position="after"
+                       context="{'res_partner_search_mode': 'customer'}">
+                    <field name="image" widget="image" width="8.3%"/>
+                    <field name="facebook" widget="url"/>
+                    <field name="linkedin" widget="url"/>
+                    <field name="twitter" widget="url"/>
+                 </xpath>
             </field>
         </record>
         <record model="ir.ui.view" id="view_partner_kanban_inherit_customer_social_media">

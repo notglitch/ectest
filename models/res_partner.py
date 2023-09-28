@@ -1,24 +1,26 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import fields, models
+import base64
+from odoo import api, fields, models, modules
 
 
 class Partner(models.Model):
 
     _inherit = 'res.partner'
 
-    def _has_social_network(self):
+    @api.model
+    def _compute_image(self):
         for customer in self:
             if customer.facebook and customer.linkedin and customer.twitter:
-                customer.has_social_media = True
+                image_path = modules.get_module_resource('ectest', 'static/src/img', 'icon3.png')
+                customer.image = base64.b64encode(open(image_path, 'rb').read())
             else:
-                customer.has_social_media = False
+                customer.image = False
 
     facebook = fields.Char(string="Facebook", store=True)
     linkedin = fields.Char(string="Linkedin", store=True)
     twitter = fields.Char(string="Twitter", store=True)
-    has_social_media = fields.Boolean("Is profile completed?",
-                                      compute='_has_social_network')
+    image = fields.Image(string="Profile Completed", compute='_compute_image')
 
 
