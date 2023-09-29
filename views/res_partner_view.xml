@@ -10,8 +10,9 @@
                        position="before"
                        context="{'res_partner_search_mode': 'customer'}">
                         <group>
-                            <div attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
-                                The Social Media Profile for this Customer is Completed  <field name="image" widget="image" width="9%" class="oe_inline" placeholder="Author Name"/>
+                             <div class="alert alert-success fa fa-check text-center mb-3"
+                                 attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
+                                 The Social Media Profile for this Customer is Completed."Please, check the Social Media Profile Tag"
                             </div>
                         </group>
                 </xpath>
