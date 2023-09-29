@@ -59,10 +59,14 @@
                 </field>
                 <xpath expr="//span[hasclass('oe_kanban_partner_links')]"
                        position="inside">
-                    <span t-if="record.has_social_media.value>0" class="badge badge-pill">
-                        <i class="fa fa-check text-success mr8"/>
-                        <t t-esc="record.has_social_media.value"/>
-                    </span >
+                    <div t-if="record.facebook.raw_value"><field name="facebook" widget="url"/></div>
+                    <div t-if="record.linkedin.raw_value"><field name="linkedin" widget="url"/></div>
+                    <div t-if="record.twitter.raw_value"><field name="twitter" widget="url"/></div>
+                    <div class="alert alert-success text-center mb-3"
+                         attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
+                       The Social Media Profile is Completed
+                        <img widget="image" width="8%" t-if="record.image.raw_value" t-att-src="kanban_image('res.partner', 'image', record.id.raw_value)"/>
+                    </div>
                 </xpath>
             </field>
         </record>
