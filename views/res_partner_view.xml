@@ -22,9 +22,9 @@
                     <page string="Social Media Profile">
                         <sheet>
                             <group>
-                                <field name="facebook" widget="url"/>
-                                <field name="linkedin" widget="url"/>
-                                <field name="twitter" widget="url"/>
+                                <label for="facebook" class="fa fa-facebook m-1 col-md-3 o_light_label oe_inline"/><field name="facebook" widget="url" nolabel="1"/>
+                                <label for="linkedin" class="fa fa-linkedin m-1 col-md-3 o_light_label oe_inline"/><field name="linkedin" widget="url" nolabel="1"/>
+                                <label for="twitter" class="fa fa-twitter m-1 col-md-3 o_light_label oe_inline"/><field name="twitter" widget="url" nolabel="1"/>
                             </group>
                             <group>
                                 <div attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
@@ -44,9 +44,9 @@
                 <xpath expr="//field[@name='display_name']" position="after"
                        context="{'res_partner_search_mode': 'customer'}">
                     <field name="image" widget="image" width="8.3%"/>
-                    <field name="facebook" widget="url"/>
-                    <field name="linkedin" widget="url"/>
-                    <field name="twitter" widget="url"/>
+                    <field name="facebook" widget="url" class="fa fa-facebook"/>
+                    <field name="linkedin" widget="url" class="fa fa-linkedin"/>
+                    <field name="twitter" widget="url" class="fa fa-twitter"/>
                  </xpath>
             </field>
         </record>
@@ -60,9 +60,9 @@
                 </field>
                 <xpath expr="//span[hasclass('oe_kanban_partner_links')]"
                        position="inside">
-                    <div t-if="record.facebook.raw_value"><field name="facebook" widget="url"/></div>
-                    <div t-if="record.linkedin.raw_value"><field name="linkedin" widget="url"/></div>
-                    <div t-if="record.twitter.raw_value"><field name="twitter" widget="url"/></div>
+                    <div class="fa fa-facebook text-facebook" t-if="record.facebook.raw_value"><field name="facebook" widget="url"/></div>
+                    <div class="fa fa-linkedin text-linkedin" t-if="record.linkedin.raw_value"><field name="linkedin" widget="url"/></div>
+                    <div class="fa fa-twitter text-twitter" t-if="record.twitter.raw_value"><field name="twitter" widget="url"/></div>
                     <div class="alert alert-success text-center mb-3"
                          attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
                        The Social Media Profile is Completed
