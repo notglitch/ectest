@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <template id="crm_social_media_data" name="CRM SM Website">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section>
+                            <h1 class="text-center">
+                                Our Customers are our Best References
+                            </h1><h2 class="text-center text-muted">
+                                Trusted by Great Teams
+                            </h2>
+                        </section>
+                    </div>
+                    <div class="container">
+                        <nav class="navbar navbar-light border-top shadow-sm d-print-none">
+                        <div class="container">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between w-100">
+                                <span class="navbar-brand h4 my-0 mr-auto">Customers</span>
+                                <ul class="nav"/>
+                                <div class="d-flex align-items-center flex-wrap pl-sm-3 pr-0">
+                                        <t t-set="_item_class" t-value="'nav-item dropdown'"/>
+                                        <t t-set="_placeholder">Search an event...</t>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="col-2">
+                            <div class="col-lg-3 mb32" id="ref_left_column">
+                            <div class="col-lg-8 offset-lg-1" id="ref_content">
+                                <div class='d-flex m-2'>
+                                    <t>
+                                       <t t-set="classname" t-value="'float-left'"/>
+                                    </t>
+                                </div>
+                                <div>
+                                    <p t-if="not customers">No result found</p>
+                                    <t t-foreach="customers" t-as="customer">
+                                        <div class="media mt-3">
+                                            <a t-attf-href="/customers/#{slug(customer)}"
+                                               t-field="customer.image_128"
+                                               class="d-block mr-3 text-center o_width_128"
+                                               t-options='{"widget": "image", "qweb_img_responsive": False, "class": "o_image_128_max"}'>
+                                            </a>
+                                            <div class="media-body">
+                                                <a t-attf-href="/customers/#{slug(customer)}">
+                                                    <span t-field="customer.display_name"/>
+                                                </a>
+                                            <div>
+                                                <ul>
+                                                    <li t-if="customer.facebook" >
+                                                        <span class="fa fa-facebook-square text-facebook" t-field="customer.facebook" widget="url"/></li>
+                                                    <li t-if="customer.twitter" >
+                                                        <span class="fa fa-twitter-square text-twitter" t-field="customer.twitter" widget="url"/></li>
+                                                    <li t-if="customer.linkedin">
+                                                        <span class="fa fa-linkedin-square text-linkedin" t-field="customer.linkedin" widget="url"/></li>
+                                                </ul>
+                                                <div t-if="customer.image" class="alert alert-success text-center">Present in all Social Media</div>                                          </div>
+                                            </div>
+                                      </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
