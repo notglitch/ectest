@@ -37,28 +37,43 @@
                                 <div>
                                     <p t-if="not customers">No result found</p>
                                     <t t-foreach="customers" t-as="customer">
+                                        <div class="media-body">
+                                            <a t-attf-href="/customers/#{slug(customer)}">
+                                                <span t-field="customer.display_name" style="font-size: 20px; font-weight: bold;"/>
+                                            </a>
+                                        </div>
                                         <div class="media mt-3">
                                             <a t-attf-href="/customers/#{slug(customer)}"
                                                t-field="customer.image_128"
                                                class="d-block mr-3 text-center o_width_128"
                                                t-options='{"widget": "image", "qweb_img_responsive": False, "class": "o_image_128_max"}'>
                                             </a>
-                                            <div class="media-body">
-                                                <a t-attf-href="/customers/#{slug(customer)}">
-                                                    <span t-field="customer.display_name"/>
-                                                </a>
+
                                             <div>
-                                                <ul>
-                                                    <li t-if="customer.facebook" >
-                                                        <span class="fa fa-facebook-square text-facebook" t-field="customer.facebook" widget="url"/></li>
-                                                    <li t-if="customer.twitter" >
-                                                        <span class="fa fa-twitter-square text-twitter" t-field="customer.twitter" widget="url"/></li>
-                                                    <li t-if="customer.linkedin">
-                                                        <span class="fa fa-linkedin-square text-linkedin" t-field="customer.linkedin" widget="url"/></li>
-                                                </ul>
+                                                <a class="media-body" t-field="customer.website_brief_info"/>
                                             </div>
-                                      </div>
-                                      </div>
+                                            <div>
+                                                <t t-if="customer.facebook" >
+                                                    <span class="fa fa-facebook-square text-facebook oe_line" t-field="customer.facebook" widget="url"/>
+                                                    <span style="font-size: 15px; color: #875A7B; font-weight: bold;" t-field="customer.facebook_followers"/>
+                                                    <span style="font-size: 15px; color: #875A7B; font-weight: bold;" t-field="customer.facebook_followers_sig"/>
+                                                </t>
+                                            </div>
+                                                <div>
+                                                <t t-if="customer.twitter" >
+                                                    <span class="fa fa-twitter-square text-twitter" t-field="customer.twitter" widget="url"/>
+                                                    <span style="font-size: 15px; color: #875A7B; font-weight: bold;" t-field="customer.twitter_followers"/>
+                                                    <span style="font-size: 15px; color: #875A7B; font-weight: bold;" t-field="customer.twitter_followers_sig"/>
+                                                </t>
+                                                </div>
+                                            <div>
+                                                <t t-if="customer.linkedin">
+                                                    <span class="fa fa-linkedin-square text-linkedin" t-field="customer.linkedin" widget="url"/>
+                                                    <span style="font-size: 15px; color: #875A7B; font-weight: bold;" t-field="customer.linkedin_followers"/>
+                                                <span style="font-size: 15px; color: #875A7B; font-weight: bold;" t-field="customer.linkedin_followers_sig"/>
+                                                </t>
+                                            </div>
+                                        </div>
                                     </t>
                                 </div>
                             </div>

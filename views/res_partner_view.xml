@@ -21,15 +21,32 @@
                        context="{'res_partner_search_mode': 'customer'}">
                     <page string="Social Media Profile">
                         <sheet>
-                            <group>
-                                <label for="facebook" class="fa fa-facebook m-1 col-md-3 o_light_label oe_inline"/><field name="facebook" widget="url" nolabel="1"/>
-                                <label for="linkedin" class="fa fa-linkedin m-1 col-md-3 o_light_label oe_inline"/><field name="linkedin" widget="url" nolabel="1"/>
-                                <label for="twitter" class="fa fa-twitter m-1 col-md-3 o_light_label oe_inline"/><field name="twitter" widget="url" nolabel="1"/>
-                            </group>
+                            <div>
+                                <label for="facebook" class="fa fa-facebook-square text-facebook" string="Facebook"/>
+                                <group>
+                                    <field name="facebook" widget="url" string="URL"/>
+                                    <field name="facebook_followers" widget="float"/>
+                                    <field name="facebook_followers_sig" widget="selection"/>
+                                </group>
+                                <label for="linkedin" class="fa fa-linkedin-square text-linkedin"/>
+                                <group>
+                                    <field name="linkedin" widget="url" string="URL"/>
+                                    <field name="linkedin_followers" widget="float" />
+                                    <field name="linkedin_followers_sig" widget="selection" />
+                                </group>
+                                <label for="twitter" class="fa fa-linkedin-square text-twitter"/>
+                                <group>
+                                    <field name="twitter" widget="url" string="URL"/>
+                                    <field name="twitter_followers" widget="float"/>
+                                    <field name="twitter_followers_sig" widget="selection"/>
+                                </group>
+                            </div>
                             <group>
                                 <div attrs="{'invisible':['|','|',('facebook','=',False),('linkedin','=',False), ('twitter','=',False)]}">
                                     Social Media Profile  <field name="image" widget="image" width="7%" class="oe_inline" placeholder="Author Name"/>
                                 </div>
+                                <field name="website_brief_info" invisibe="1"/>
+
                             </group>
                        </sheet>
                     </page>
