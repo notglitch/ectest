@@ -56,7 +56,6 @@
                                                     <li t-if="customer.linkedin">
                                                         <span class="fa fa-linkedin-square text-linkedin" t-field="customer.linkedin" widget="url"/></li>
                                                 </ul>
-                                                <div t-if="customer.image" class="alert alert-success text-center">Present in all Social Media</div>                                          </div>
                                             </div>
                                       </div>
                                     </t>
