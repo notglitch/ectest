@@ -8,10 +8,9 @@
     'summary': 'Customers Social Media Managment',
     'description': "Technical Test to CE Job Application",
     'depends': [
-        'base_setup',
         'base',
-        'crm',
         'website',
+        'crm',
     ],
     'data': [
         'views/res_partner_view.xml',
