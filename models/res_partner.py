@@ -22,15 +22,17 @@ class Partner(models.Model):
     facebook_followers_sig = fields.Selection(
         [("few", "<k"), ("k", "K"), ("m", "M"), ("mm", "MM")], default="few",
         string="measure", store=True)
-    facebook = fields.Char(string="Facebook", store=True)
+    facebook = fields.Char()
     linkedin_followers = fields.Float(string="linkedin followers", store=True)
     linkedin_followers_sig = fields.Selection(
         [("few", "<k"), ("k", "K"), ("m", "M"), ("mm", "MM")], default="few",
         string="measure", store=True)
-    linkedin = fields.Char(string="Linkedin", store=True)
-    twitter = fields.Char(string="Twitter", store=True)
+    linkedin = fields.Char()
+    twitter = fields.Char()
     twitter_followers = fields.Float('twitter followers')
     twitter_followers_sig = fields.Selection(
         [("few", "<k"), ("k", "K"), ("m", "M"), ("mm", "MM")], default="few")
     website_brief_info = fields.Text(string="Website Brief info")
     image = fields.Image(string="Profile Completed", compute='_compute_image')
+
+
